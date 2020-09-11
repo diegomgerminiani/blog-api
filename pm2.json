@@ -1,0 +1,11 @@
+{
+    "apps": [
+        {
+            "name": "lidianegouveia",
+            "script": "./src/server.ts",
+            "watch": ["./src"],
+            "instances": 0,
+            "exec_mode": "fork"
+        }
+    ]
+}

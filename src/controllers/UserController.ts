@@ -27,8 +27,7 @@ export default class UserControllers {
             const newToken = JWT.sign({
                 id: user[0].id,
                 name: user[0].name
-            }, JWK.asKey('8094263dfc2e0c084b9487841f097d1c'), { expiresIn: '1 hour' });
-
+            }, JWK.asKey(process.env.DEFAULT_KEY as string), { expiresIn: '1 hour' });
             user[0].token = newToken;
         }
 

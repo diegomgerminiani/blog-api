@@ -5,6 +5,7 @@ import { Request, Response, NextFunction} from 'express';
 export default class MessageController{
     
     async global(request: Request, response: Response, next: NextFunction) {
+
         if (request.originalUrl != '/login') {
                   
             const auth = request.headers.authorization;
@@ -26,7 +27,7 @@ export default class MessageController{
                 return response.status(status.UNAUTHORIZED).send({ erro: 'Erro no formato do token.'});
     
             try {
-                let decoded = JWT.verify(token, JWK.asKey('8094263dfc2e0c084b9487841f097d1c'));
+                let decoded = JWT.verify(token, JWK.asKey(process.env.DEFAULT_KEY as string));
                 return next();
             } catch (error) {
                 return response.status(status.UNAUTHORIZED).send({ error: 'Token Invalido!' });

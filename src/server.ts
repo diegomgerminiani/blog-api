@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import routes from './routes';
 import Authorization from './middleware/Authorization';
+import './env';
 
 const authorization = new Authorization();
 const app = express();

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/jose
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/pm2
 
 PATH: 
   C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Java\jdk1.8.0_211\bin;C:\android\sdk\emulator;C:\android\sdk\tools;C:\android\sdk\tools\bin;C:\android\sdk\platform-tools;C:\Program Files\MongoDB\Server\4.2\bin;C:\Users\diego\AppData\Local\Microsoft\WindowsApps;C:\Users\diego\AppData\Local\GitHubDesktop\bin;C:\Users\diego\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\diego\AppData\Local\Microsoft\WindowsApps;C:\Users\diego\AppData\Roaming\npm;C:\Users\diego\AppData\Local\Yarn\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fjose: Not found
+  Error: https://registry.yarnpkg.com/@types%2fpm2: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66096:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
       at Request.emit (events.js:315:20)
@@ -33,6 +33,7 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
+      "startprod": "pm2",
       "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
       "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
       "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
@@ -44,11 +45,13 @@ npm manifest:
       "typescript": "^3.9.7"
     },
     "dependencies": {
+      "bcryptjs": "^2.4.3",
       "cors": "^2.8.5",
       "express": "^4.17.1",
       "http-status": "^1.4.2",
       "jose": "^2.0.1",
       "knex": "^0.21.2",
+      "pm2": "^4.4.1",
       "sqlite3": "^5.0.0"
     }
   }
