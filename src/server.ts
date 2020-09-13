@@ -8,6 +8,8 @@ const authorization = new Authorization();
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.disable('etag');
+
 app.use(cors())
 app.use(express.json());
 app.use(authorization.global);
