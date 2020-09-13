@@ -10,7 +10,7 @@ export default class MessageController{
         try {
             const messages = await db('message').select();
 
-            return response.status(http.OK).json(messages);
+            return response.status(http.OK).send(messages);
 
         } catch (error) {
             console.log(`error: ${error}`);
@@ -30,7 +30,7 @@ export default class MessageController{
 
             const msg_id = insertedMessage[0];
 
-            return response.status(http.CREATED).send({id: msg_id})
+            return response.status(http.CREATED).send()
     
         } catch (error) {
             console.log(`error: ${error}`);

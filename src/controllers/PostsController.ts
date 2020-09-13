@@ -16,7 +16,7 @@ export default class PostsController{
         try {
             const posts = await db('posts').select();
 
-            return response.status(http.OK).json(posts);
+            return response.status(http.OK).send(posts);
 
         } catch (error) {
             console.log(`error: ${error}`);

@@ -10,7 +10,7 @@ export default class SubscriberController{
         try {
             const subscribers = await db('subscriber').select();
 
-            return response.status(http.OK).json(subscribers);
+            return response.status(http.OK).send(subscribers);
 
         } catch (error) {
             console.log(`error: ${error}`);
@@ -31,7 +31,7 @@ export default class SubscriberController{
 
             const subs_id = insertedSubscriber[0];
 
-            return response.status(http.CREATED).send({id: subs_id})
+            return response.status(http.CREATED).send()
     
         } catch (error) {
             console.log(`error: ${error}`);
