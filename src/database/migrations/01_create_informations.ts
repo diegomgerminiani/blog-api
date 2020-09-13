@@ -12,6 +12,7 @@ export async function up(knex: Knex){
         table.string('city_uf').notNullable();
         table.string('phone').notNullable();
         table.string('email').notNullable();
+        table.string('embedlink').notNullable();
     })
 }
 

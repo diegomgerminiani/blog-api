@@ -19,7 +19,7 @@ export default class InfoController{
     }
 
     async create(request: Request, response: Response) {
-        const { name, street, complement, number, neighborhood, cep, city_uf, phone, email } = request.body;
+        const { name, street, complement, number, neighborhood, cep, city_uf, phone, email, embedlink } = request.body;
         
         try {
             const insertedInfos = await db('informations').insert({
@@ -31,7 +31,8 @@ export default class InfoController{
                 cep,
                 city_uf,
                 phone,
-                email
+                email,
+                embedlink
             });
 
             const info_id = insertedInfos[0];
@@ -45,7 +46,7 @@ export default class InfoController{
     }
 
     async alter(request: Request, response: Response) {
-        const { name, street, complement, number, neighborhood, cep, city_uf, phone, email } = request.body;
+        const { name, street, complement, number, neighborhood, cep, city_uf, phone, email, embedlink } = request.body;
         const id = request.params.id;
 
         try {
@@ -58,7 +59,8 @@ export default class InfoController{
                 cep,
                 city_uf,
                 phone,
-                email
+                email,
+                embedlink
             });
             return response.status(http.OK).send()
         } catch (error) {
