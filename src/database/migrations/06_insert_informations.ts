@@ -8,6 +8,7 @@ export async function up(knex: Knex){
         complement: '4º andar Edifício ACIL',
         number: '45 sala 401',
         neighborhood: 'Vila Brasília',
+        cep: '37000-000',
         city_uf: 'Lavras - MG',
         phone: '35 98822-1038',
         email: 'lidianegouveiapsiclinica@yahoo.com'

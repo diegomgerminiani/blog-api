@@ -6,7 +6,7 @@ export default class MessageController{
     
     async global(request: Request, response: Response, next: NextFunction) {
 
-        if (request.originalUrl != '/login') {
+        if (request.originalUrl != '/login' && request.originalUrl != '/infos') {
                   
             const auth = request.headers.authorization;
     

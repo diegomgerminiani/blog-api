@@ -8,6 +8,7 @@ export async function up(knex: Knex){
         table.string('complement').notNullable();
         table.string('number').notNullable();
         table.string('neighborhood').notNullable();
+        table.string('cep').notNullable();
         table.string('city_uf').notNullable();
         table.string('phone').notNullable();
         table.string('email').notNullable();
