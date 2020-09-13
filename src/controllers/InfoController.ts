@@ -10,7 +10,7 @@ export default class InfoController{
         try {
             const infos = await db('informations').select();
 
-            return response.status(http.OK).json(infos);
+            return response.status(http.OK).send(infos);
 
         } catch (error) {
             console.log(`error: ${error}`);
