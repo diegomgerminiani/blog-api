@@ -21,7 +21,9 @@ const messageController = new MessageController();
 routes.post("/login", userController.login);
 
 //Rotas para Postagens
-routes.get("/post", postsController.index);
+routes.get("/post", postsController.indexActivated);
+routes.get("/post_all", postsController.index);
+routes.get("/post_spotlight", postsController.indexSpotlight);
 routes.post("/post", authorization.global, postsController.create);
 routes.put("/post/:id", authorization.global, postsController.alter);
 routes.delete("/post/:id", authorization.global, postsController.delete);

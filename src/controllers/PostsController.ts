@@ -40,6 +40,23 @@ export default class PostsController{
         }
     }
 
+    async indexSpotlight(request: Request, response: Response) {
+
+        try {
+            const posts = await db('posts')
+                .where('is_activated', '=', '1')
+                .limit(3)
+                .orderBy('created_at')
+                .select();
+
+            return response.status(http.OK).send(posts);
+
+        } catch (error) {
+            console.log(`error: ${error}`);
+            return response.status(http.BAD_REQUEST).send({error: 'Unexpected error while finding posts'})
+        }
+    }
+
     async create(request: Request, response: Response) {
         const { title, subtitle, text, img, is_highlight, is_activated} = request.body;
         

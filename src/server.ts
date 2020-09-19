@@ -14,5 +14,5 @@ app.use(routes);
 
 
 app.listen(port, () => {
-    /* console.log(`Servidor executando em: http://localhost:${port}/`); */
+    console.log(`Servidor executando!`);
 });
