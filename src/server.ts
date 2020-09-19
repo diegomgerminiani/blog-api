@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import routes from './routes';
-import './env';
+import './env'
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.disable('etag');
 
@@ -14,5 +14,5 @@ app.use(routes);
 
 
 app.listen(port, () => {
-    console.log(`Servidor executando em: http://localhost:${port}/`);
+    /* console.log(`Servidor executando em: http://localhost:${port}/`); */
 });

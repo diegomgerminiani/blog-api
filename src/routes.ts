@@ -1,4 +1,6 @@
 import express from "express";
+import './env';
+
 import Authorization from './middleware/Authorization';
 
 import UserController from "./controllers/UserController";

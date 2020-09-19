@@ -24,8 +24,24 @@ export default class PostsController{
         }
     }
 
+    async indexActivated(request: Request, response: Response) {
+
+        try {
+            const posts = await db('posts')
+                .where('is_activated', '=', '1')
+                .orderBy([{ column: 'created_at'}, { column: 'is_highlight', order: 'desc'}])
+                .select();
+
+            return response.status(http.OK).send(posts);
+
+        } catch (error) {
+            console.log(`error: ${error}`);
+            return response.status(http.BAD_REQUEST).send({error: 'Unexpected error while finding posts'})
+        }
+    }
+
     async create(request: Request, response: Response) {
-        const { title, subtitle, text, img, is_highlight, is_activated, tags} = request.body;
+        const { title, subtitle, text, img, is_highlight, is_activated} = request.body;
         
         try {
             const insertedPost = await db('posts').insert({
@@ -48,7 +64,7 @@ export default class PostsController{
     }
 
     async alter(request: Request, response: Response) {
-        const { title, subtitle, text, img, is_highlight, is_activated, tags} = request.body;
+        const { title, subtitle, text, img, is_highlight, is_activated} = request.body;
         const id = request.params.id;
 
         try {
@@ -66,6 +82,7 @@ export default class PostsController{
             return response.status(http.BAD_REQUEST).send({error: 'Unexpected error while updating post'})
         }
     }
+
     async delete(request: Request, response: Response) {
         const id = request.params.id;
         
@@ -77,4 +94,5 @@ export default class PostsController{
             return response.status(http.BAD_REQUEST).send({error: 'Unexpected error while deleting post'})
         }
     }
+    
 }

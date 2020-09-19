@@ -6,7 +6,7 @@
   "scripts": {
     "startprod": "node src/server.ts",
     "start": "ts-node-transpile-only src/server.ts",
-    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "knex:migrate": "knex --debug --knexfile knexfile.ts migrate:latest",
     "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "http-status": "^1.4.2",
     "jose": "^2.0.1",
     "knex": "^0.21.2",
+    "mysql": "^2.18.1",
     "pm2": "^4.4.1",
     "sqlite3": "^5.0.0",
     "ts-node": "^9.0.0",

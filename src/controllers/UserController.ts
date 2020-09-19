@@ -14,7 +14,7 @@ interface User {
 export default class UserControllers {
     async login(request: Request, response: Response) {
         const { name, password } = request.body;
-
+        
         const user = await db('user')
             .from<User>('user')
             .where({name})
