@@ -2,6 +2,7 @@ import express from "express";
 import './env';
 
 import Authorization from './middleware/Authorization';
+const upload = require('./middleware/UploadImage.js');
 
 import UserController from "./controllers/UserController";
 import PostsController from "./controllers/PostsController";
@@ -22,10 +23,10 @@ routes.post("/login", userController.login);
 
 //Rotas para Postagens
 routes.get("/post", postsController.indexActivated);
-routes.get("/post_all", postsController.index);
 routes.get("/post_spotlight", postsController.indexSpotlight);
-routes.post("/post", authorization.global, postsController.create);
-routes.put("/post/:id", authorization.global, postsController.alter);
+routes.get("/post_all", authorization.global, postsController.index);
+routes.post("/post", authorization.global, upload.singleImage, postsController.create);
+routes.put("/post/:id", authorization.global, upload.singleImage, postsController.alter);
 routes.delete("/post/:id", authorization.global, postsController.delete);
 
 //Rotas para Infos

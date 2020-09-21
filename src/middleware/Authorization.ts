@@ -2,7 +2,7 @@ import status from 'http-status';
 import { JWT, JWK } from 'jose';
 import { Request, Response, NextFunction} from 'express';
 
-export default class MessageController{
+export default class Authorization{
     
     async global(request: Request, response: Response, next: NextFunction) {
                   

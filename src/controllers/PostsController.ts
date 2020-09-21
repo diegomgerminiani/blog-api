@@ -1,6 +1,6 @@
 import db from "../database/connection";
 import http from 'http-status';
-import { Request, Response} from 'express'
+import { Request, Response,  } from 'express'
 
 interface tagItem{
     post_id: number;
@@ -10,7 +10,7 @@ interface tagItem{
 
 export default class PostsController{
     
-    
+    //Busca todos os posts
     async index(request: Request, response: Response) {
 
         try {
@@ -24,6 +24,7 @@ export default class PostsController{
         }
     }
 
+    //Busca todos os posts ativos
     async indexActivated(request: Request, response: Response) {
 
         try {
@@ -40,6 +41,7 @@ export default class PostsController{
         }
     }
 
+    //Busca os 3 posts ativos mais recentes 
     async indexSpotlight(request: Request, response: Response) {
 
         try {
@@ -47,7 +49,7 @@ export default class PostsController{
                 .where('is_activated', '=', '1')
                 .limit(3)
                 .orderBy('created_at')
-                .select();
+                .select('id', 'img', 'title', 'created_at');
 
             return response.status(http.OK).send(posts);
 
@@ -57,15 +59,19 @@ export default class PostsController{
         }
     }
 
-    async create(request: Request, response: Response) {
-        const { title, subtitle, text, img, is_highlight, is_activated} = request.body;
+    //Cria um novo post
+    async create(request: any, response: Response) {
+        const { title, subtitle, text, is_highlight, is_activated} = request.body;
+        const { location } = request.file;
+
+        console.log(`path: ${location}`);
         
         try {
             const insertedPost = await db('posts').insert({
                 title,
                 subtitle,
                 text,
-                img, 
+                img: location, 
                 is_highlight, 
                 is_activated
             });
@@ -80,8 +86,10 @@ export default class PostsController{
         }
     }
 
+    //Atualiza um post
     async alter(request: Request, response: Response) {
-        const { title, subtitle, text, img, is_highlight, is_activated} = request.body;
+        const { title, subtitle, text, is_highlight, is_activated} = request.body;
+        const { path } = request.file;
         const id = request.params.id;
 
         try {
@@ -89,7 +97,7 @@ export default class PostsController{
                 title,
                 subtitle,
                 text,
-                img, 
+                img: path, 
                 is_highlight, 
                 is_activated
             });
@@ -100,6 +108,7 @@ export default class PostsController{
         }
     }
 
+    //Deleta um post
     async delete(request: Request, response: Response) {
         const id = request.params.id;
         
