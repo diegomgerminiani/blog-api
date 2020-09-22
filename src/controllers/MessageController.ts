@@ -40,7 +40,7 @@ export default class MessageController{
             });
 
             mailer.sendMail({
-                to: process.env.EMAIL_USER,
+                to: process.env.EMAIL_RECEIVER,
                 from: email,
                 subject: 'Lidiane Gouveia - Nova Mensagem Recebida!',
                 template: 'new',
