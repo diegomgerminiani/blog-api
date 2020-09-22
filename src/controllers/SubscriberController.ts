@@ -29,7 +29,7 @@ export default class SubscriberController{
                 is_receiver
             });
 
-            const subs_id = insertedSubscriber[0];
+            /* const subs_id = insertedSubscriber[0]; */
 
             return response.status(http.CREATED).send()
     

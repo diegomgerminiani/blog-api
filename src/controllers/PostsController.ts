@@ -63,8 +63,6 @@ export default class PostsController{
     async create(request: any, response: Response) {
         const { title, subtitle, text, is_highlight, is_activated} = request.body;
         const { location } = request.file;
-
-        console.log(`path: ${location}`);
         
         try {
             const insertedPost = await db('posts').insert({

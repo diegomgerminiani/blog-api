@@ -1,0 +1,57 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Thasadith:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: #f5e3fa;
+            font-family: 'Bad Script', cursive;
+        }
+
+        .header{
+            width: 80%;
+            padding: 20px 40px 10px 40px;
+            margin: 0 auto;
+            display: block;
+            color: #392746;
+        }
+
+        .header .hello,
+        .header .intro{
+            width: 60%;
+            padding: 0 20px;
+        }
+
+        .mensagem{
+            width: 80%;
+            padding: 5px 20px;
+            margin: 0 auto;
+            display: block;
+            background-color: #e7d1ee;
+            border: 1px solid #5f4373;
+            border-radius: 10px;
+            color: #392746;
+            -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.4);
+            -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.4);
+            box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.4);
+        }
+        .mensagem .subject{
+            padding: 0 5%;
+        }
+        .mensagem .contact{
+            padding: 5% 5% 0 5%;
+        }
+        .mensagem .text{
+            padding: 0 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2 class='hello'>Olá Lidiane,</h2>
+        <p class='intro'>"{{ name }}" acabou de contar a seguinte história no seu site:</p>
+    </div>
+    <div class="mensagem">
+        <h3 class='subject'>{{ subject }}</h3>
+        <p class='text'>{{ text }}</p>
+        <h4 class='contact'>{{ email }} - {{ phone }}</p>
+    </div>
+</body>

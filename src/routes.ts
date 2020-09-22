@@ -44,7 +44,6 @@ routes.delete("/subs/:id", authorization.global, subscriberController.delete);
 //Rotas para Message
 routes.get("/msg", authorization.global, messageController.index);
 routes.post("/msg", messageController.create);
-routes.put("/msg/:id", authorization.global, messageController.alter);
 routes.delete("/msg/:id", authorization.global, messageController.delete);
 
 
