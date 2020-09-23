@@ -50,6 +50,7 @@ export default class MessageController{
                     console.log(error);
                     response.status(http.BAD_REQUEST).send({ error: 'Não foi possível enviar o e-mail. Por favor, tente mais tarde.' })
                 } else {
+                    console.log(`Email enviado! From ${email} To ${process.env.EMAIL_RECEIVER}`);
                     response.status(http.OK).send({ messagem: `Mensagem enviada! id:${insertedMessage}(${email})`})
                 }
             })
