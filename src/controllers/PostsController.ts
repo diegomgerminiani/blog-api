@@ -30,7 +30,7 @@ export default class PostsController{
         try {
             const posts = await db('posts')
                 .where('is_activated', '=', '1')
-                .orderBy([{ column: 'created_at'}, { column: 'is_highlight', order: 'desc'}])
+                .orderBy([{ column: 'created_at', order: 'desc'}, { column: 'is_highlight', order: 'desc'}])
                 .select();
 
             return response.status(http.OK).send(posts);
@@ -48,7 +48,7 @@ export default class PostsController{
             const posts = await db('posts')
                 .where('is_activated', '=', '1')
                 .limit(3)
-                .orderBy('created_at')
+                .orderBy('created_at', 'desc')
                 .select('id', 'img', 'title', 'created_at');
 
             return response.status(http.OK).send(posts);
