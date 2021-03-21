@@ -45,6 +45,17 @@ export default class InfoController{
         }
     }
 
+    async newAccess(request: Request, response: Response) {
+        
+        try {
+            await db('metrics').insert({});
+            return response.status(http.CREATED).send({})
+        } catch (error) {
+            console.log(`error: ${error}`);
+            return response.status(http.BAD_REQUEST).send({error: 'Unexpected error while creating new informations'})
+        }
+    }
+
     async alter(request: Request, response: Response) {
         const { name, street, complement, number, neighborhood, cep, city_uf, phone, email, embedlink } = request.body;
         const id = request.params.id;

@@ -33,7 +33,21 @@ export default class PostsController{
                 .orderBy([{ column: 'created_at', order: 'desc'}, { column: 'is_highlight', order: 'desc'}])
                 .select();
 
-            return response.status(http.OK).send(posts);
+            const posts_response = await Promise.all(
+                posts.map(async (post: any) => {
+                    const comments = await db('comments')
+                        .select('comments.id', 'subject', 'comment', 'likes', 'created_at', 'subscriber.name' )
+                        .where('post_id', '=', post.id)
+                        .rightJoin('subscriber', 'comments.subscriber_id', 'subscriber.id')
+                        .orderBy('created_at');
+
+                    return {...post, comments}
+                })
+            );
+
+            console.log(posts_response);
+
+            return response.status(http.OK).send(posts_response);
 
         } catch (error) {
             console.log(`error: ${error}`);
@@ -118,5 +132,6 @@ export default class PostsController{
             return response.status(http.BAD_REQUEST).send({error: 'Unexpected error while deleting post'})
         }
     }
+
     
 }
