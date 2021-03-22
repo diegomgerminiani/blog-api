@@ -31,7 +31,7 @@ export default class SubscriberController{
 
             const subs_id = insertedSubscriber[0];
 
-            return response.status(http.CREATED).send(subs_id)
+            return response.status(http.CREATED).send({id: subs_id})
     
         } catch (error) {
             console.log(`error: ${error}`);
