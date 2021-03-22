@@ -10,7 +10,7 @@ export default class CommentsController{
 
         try {
             const comments = await db('comments')
-                .select('comments.id', 'subject', 'comment', 'likes', 'created_at', 'subscriber.name' )
+                .select('post_id','comments.id', 'subject', 'comment', 'likes', 'created_at', 'subscriber.name' )
                 .where('post_id', '=', post_id)
                 .rightJoin('subscriber', 'comments.subscriber_id', 'subscriber.id')
                 .orderBy('created_at')
@@ -35,7 +35,7 @@ export default class CommentsController{
                 post_id,
             });
 
-            const comment_id = insertedComment[0];
+            const comment_id = insertedComment[0]; 
 
             return response.status(http.CREATED).send({id: comment_id})
     
@@ -57,8 +57,6 @@ export default class CommentsController{
             const likes = await db('comments')
                 .select('likes')
                 .where('id', '=', id)
-
-            console.log(likes);
 
             return response.status(http.CREATED).send({likes: likes[0].likes})
     

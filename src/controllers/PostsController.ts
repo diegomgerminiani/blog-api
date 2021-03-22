@@ -45,8 +45,6 @@ export default class PostsController{
                 })
             );
 
-            console.log(posts_response);
-
             return response.status(http.OK).send(posts_response);
 
         } catch (error) {
